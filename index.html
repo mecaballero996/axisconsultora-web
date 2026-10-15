@@ -148,6 +148,32 @@
   .how-watermark{position:absolute; right:-40px; bottom:-40px; width:340px; opacity:.08; pointer-events:none;}
   .how-watermark img{width:100%; height:auto; display:block;}
 
+  /* ---------- EMPRESAS ---------- */
+  .partners{background:var(--mist); padding:64px 0; border-bottom:1px solid var(--line);}
+  .partners-heading{display:flex; align-items:center; justify-content:space-between; gap:24px; margin-bottom:32px;}
+  .partners h2{font-size:clamp(1.2rem,2.3vw,1.65rem); font-weight:500; color:var(--ink-soft); max-width:600px;}
+  .partners-toggle{flex-shrink:0; background:transparent; color:var(--ink-soft); border:1px solid var(--line); border-radius:8px; padding:10px 14px; font:inherit; font-size:.8rem; cursor:pointer;}
+  .partners-toggle:hover{border-color:var(--coral); color:var(--charcoal);}
+  .partners-window{overflow:hidden; mask-image:linear-gradient(to right,transparent,#000 6%,#000 94%,transparent);}
+  .partners-track{display:flex; width:max-content; animation:partners-scroll 30s linear infinite;}
+  .partners-group{display:flex; align-items:center; flex-shrink:0; list-style:none;}
+  .partner-logo{width:280px; height:108px; padding:20px 36px; mix-blend-mode:multiply; display:flex; align-items:center; justify-content:center;}
+  .partner-logo img{display:block; max-width:100%; max-height:100%; width:auto; height:auto; filter:grayscale(1); opacity:.48; mix-blend-mode:multiply;}
+  .partner-logo .partner-doctored{filter:grayscale(1) invert(1) contrast(2);}
+  .partners-window:hover .partners-track,.partners-window:focus-within .partners-track,.partners.is-paused .partners-track{animation-play-state:paused;}
+  @keyframes partners-scroll{to{transform:translateX(-50%);}}
+  @media(max-width:600px){
+    .partners{padding:48px 0;}
+    .partners-heading{align-items:flex-start; gap:16px;}
+    .partner-logo{width:200px; height:94px; padding:18px 28px;}
+  }
+  @media(prefers-reduced-motion:reduce){
+    .partners-window{overflow-x:auto; mask-image:none;}
+    .partners-track{animation:none;}
+    .partners-group[aria-hidden]{display:none;}
+    .partners-toggle{display:none;}
+  }
+
   /* ---------- CONTACTO ---------- */
   .contact{text-align:center;}
   .contact .section-head{margin:0 auto 44px; text-align:center;}
@@ -331,6 +357,31 @@
   </div>
 </section>
 
+<section id="empresas" class="partners" aria-labelledby="partners-title">
+  <div class="wrap">
+    <div class="partners-heading">
+      <h2 id="partners-title">Algunas de las empresas que comercializamos</h2>
+      <button class="partners-toggle" type="button" aria-pressed="false" aria-controls="partners-track">Pausar movimiento</button>
+    </div>
+    <div class="partners-window">
+      <div id="partners-track" class="partners-track">
+      <ul class="partners-group">
+        <li class="partner-logo"><img src="assets/partners/doctored.jpg" alt="DoctoRed" class="partner-doctored" width="220" height="100" loading="lazy"></li>
+        <li class="partner-logo"><img src="assets/partners/red-argentina.webp" alt="Red Argentina" class="" width="220" height="100" loading="lazy"></li>
+        <li class="partner-logo"><img src="assets/partners/meplife.jpg" alt="MeP Life Salud" class="" width="220" height="100" loading="lazy"></li>
+        <li class="partner-logo"><img src="assets/partners/mgn-salud.jpg" alt="MGN Salud" class="" width="220" height="100" loading="lazy"></li>
+      </ul>
+      <ul class="partners-group" aria-hidden="true">
+        <li class="partner-logo"><img src="assets/partners/doctored.jpg" alt="" class="partner-doctored" width="220" height="100" loading="lazy"></li>
+        <li class="partner-logo"><img src="assets/partners/red-argentina.webp" alt="" class="" width="220" height="100" loading="lazy"></li>
+        <li class="partner-logo"><img src="assets/partners/meplife.jpg" alt="" class="" width="220" height="100" loading="lazy"></li>
+        <li class="partner-logo"><img src="assets/partners/mgn-salud.jpg" alt="" class="" width="220" height="100" loading="lazy"></li>
+      </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
 <section id="contacto" class="contact">
   <div class="wrap">
     <div class="section-head reveal">
@@ -361,6 +412,13 @@
 </footer>
 
 <script>
+  const partners = document.querySelector('.partners');
+  const partnersToggle = document.querySelector('.partners-toggle');
+  partnersToggle.addEventListener('click', () => {
+    const paused = partners.classList.toggle('is-paused');
+    partnersToggle.setAttribute('aria-pressed', String(paused));
+    partnersToggle.textContent = paused ? 'Reanudar movimiento' : 'Pausar movimiento';
+  });
   const header = document.getElementById('site-header');
   window.addEventListener('scroll', () => { header.classList.toggle('scrolled', window.scrollY > 20); });
   const observer = new IntersectionObserver((entries) => {
