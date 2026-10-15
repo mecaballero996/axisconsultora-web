@@ -127,7 +127,7 @@
   .about-text p{color:var(--ink-soft); margin-bottom:16px;}
 
   /* ---------- AREAS DE FORTALEZA ---------- */
-  .areas-grid{display:grid; grid-template-columns:repeat(auto-fit, minmax(280px,1fr)); gap:22px;}
+  .areas-grid{display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:22px;}
   .area-card{background:#fff; border:1px solid var(--line); border-radius:14px; padding:30px; transition:border-color .25s ease, transform .25s ease, box-shadow .25s ease;}
   .area-card:hover{border-color:var(--coral); transform:translateY(-4px); box-shadow:0 16px 34px rgba(32,31,30,.07);}
   .area-tag{font-family:'IBM Plex Mono'; font-size:.68rem; color:var(--coral-deep); background:var(--coral-tint); display:inline-block; padding:4px 10px; border-radius:6px; margin-bottom:14px;}
@@ -195,6 +195,7 @@
     .hero-grid{grid-template-columns:1fr;}
     .hero-visual{height:280px; order:-1;}
     .about-grid{grid-template-columns:1fr; gap:36px;}
+    .areas-grid{grid-template-columns:repeat(auto-fit,minmax(min(280px,100%),1fr));}
     .how-grid{grid-template-columns:repeat(2,1fr);}
     section{padding:76px 0;}
     .hero{padding:150px 0 70px;}
@@ -280,7 +281,7 @@
     <div class="section-head reveal">
       <div class="eyebrow">Nuestras áreas de fortaleza</div>
       <h2>Cobertura integral, de la cotización a la cobranza</h2>
-      <p>Cinco frentes de trabajo que cubren todo el ciclo de vida de tu institución de salud.</p>
+      <p>Seis frentes de trabajo que cubren todo el ciclo de vida de tu institución de salud.</p>
     </div>
     <div class="areas-grid">
       <div class="area-card reveal">
@@ -302,7 +303,6 @@
           <li>Marketing enfocado en fortalezas del producto</li>
           <li>Análisis de bases de datos</li>
           <li>Automatización conversacional (IA)</li>
-          <li>Gestión y auditoría de brokers</li>
           <li>Modelos B2C y B2B</li>
         </ul>
       </div>
@@ -334,6 +334,17 @@
           <li>Auditoría de procesos</li>
           <li>Herramientas de optimización digital</li>
           <li>Prevención y mediación de conflictos</li>
+        </ul>
+      </div>
+      <div class="area-card reveal">
+        <span class="area-tag">◆ GESTIÓN DE BROKERS</span>
+        <h3>Gestión y Auditoría de Brokers</h3>
+        <ul>
+          <li>Validación documental de operaciones comerciales</li>
+          <li>Control de requisitos y prevención de observaciones</li>
+          <li>Optimización de circuitos administrativos</li>
+          <li>Auditoría de liquidaciones y comisiones</li>
+          <li>Control de facturación comercial</li>
         </ul>
       </div>
     </div>
